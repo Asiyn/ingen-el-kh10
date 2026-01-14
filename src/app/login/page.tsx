@@ -7,6 +7,7 @@ import styles from "./login.module.css";
 export default function LoginPage() {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
+  const [showPwd, setShowPwd] = useState(false);
   const [remember, setRemember] = useState(false);
   const [err, setErr] = useState("");
   const router = useRouter();
@@ -41,27 +42,51 @@ export default function LoginPage() {
         />
 
         <label htmlFor="pwd">Lösenord</label>
-        <input
-          id="pwd"
-          type="password"
-          placeholder="Skriv lösenord"
-          value={pwd}
-          onChange={(e) => setPwd(e.target.value)}
-          required
-        />
 
-        <label style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+        <div style={{ position: "relative", width: "100%", justifyContent: "start" }} className={styles.passwordInput}>
           <input
-            type="checkbox"
-            checked={remember}
-            onChange={(e) => setRemember(e.target.checked)}
-            className={styles.stayLogged}
+            id="pwd"
+            type={showPwd ? "text" : "password"}
+            placeholder="Skriv lösenord"
+            value={pwd}
+            onChange={(e) => setPwd(e.target.value)}
+            style={{width: "87%"}}
+            className={styles.passwordInput}
+            required
           />
-          Förbli inloggad
-        </label>
+
+          <button
+            type="button"
+            onClick={() => setShowPwd((v) => !v)}
+            style={{
+              position: "absolute",
+              right: "0rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              opacity: 0.7,
+            }}
+            className={styles.viewPWD}
+            aria-label={showPwd ? "Dölj lösenord" : "Visa lösenord"}
+          >
+            {showPwd ? "🙈" : "👁️"}
+          </button>
+        </div>
+
+        <label className={styles.stayRow}>
+  <input
+    type="checkbox"
+    checked={remember}
+    onChange={(e) => setRemember(e.target.checked)}
+    className={styles.toggleSaveLogin}
+  />
+  <span style={{ fontSize: "0.9rem" }}>Förbli inloggad</span>
+</label>
 
         {err && <p>{err}</p>}
-        <button type="submit">Logga in</button>
+        <button type="submit" className={styles.loginBtn}>Logga in</button>
       </form>
     </div>
   );
