@@ -28,8 +28,9 @@ export default function LoginPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Logga in</h1>
+      <h1 className={styles.title}>KH10 elen har gått</h1>
 
+      <h2>Logga in</h2>
       <form className={styles.loginContainer} onSubmit={onSubmit}>
         <label htmlFor="user">Användarnamn</label>
         <input
@@ -43,14 +44,21 @@ export default function LoginPage() {
 
         <label htmlFor="pwd">Lösenord</label>
 
-        <div style={{ position: "relative", width: "100%", justifyContent: "start" }} className={styles.passwordInput}>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            justifyContent: "start",
+          }}
+          className={styles.passwordInput}
+        >
           <input
             id="pwd"
             type={showPwd ? "text" : "password"}
             placeholder="Skriv lösenord"
             value={pwd}
             onChange={(e) => setPwd(e.target.value)}
-            style={{width: "87%"}}
+            style={{ width: "87%" }}
             className={styles.passwordInput}
             required
           />
@@ -76,17 +84,19 @@ export default function LoginPage() {
         </div>
 
         <label className={styles.stayRow}>
-  <input
-    type="checkbox"
-    checked={remember}
-    onChange={(e) => setRemember(e.target.checked)}
-    className={styles.toggleSaveLogin}
-  />
-  <span style={{ fontSize: "0.9rem" }}>Förbli inloggad</span>
-</label>
+          <input
+            type="checkbox"
+            checked={remember}
+            onChange={(e) => setRemember(e.target.checked)}
+            className={styles.toggleSaveLogin}
+          />
+          <span style={{ fontSize: "0.9rem" }}>Förbli inloggad</span>
+        </label>
 
         {err && <p>{err}</p>}
-        <button type="submit" className={styles.loginBtn}>Logga in</button>
+        <button type="submit" className={styles.loginBtn}>
+          Logga in
+        </button>
       </form>
     </div>
   );

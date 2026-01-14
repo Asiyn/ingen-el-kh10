@@ -30,3 +30,7 @@ h1 {
   background-clip: text;
   color: transparent;
 }
+
+h2 {
+  margin: 0;
+}
